@@ -14,6 +14,18 @@ async function saveItem (req, res){
     res.json(results)
  }
 
+ async function updateItem(req, res ){
+   const itemId = req.body.itemId;
+   const itemName = req.body.itemName;
+   const itemImage = req.body.itemImage;
+   const itemDescription = req.body.itemDescription;
+
+   const results = await Item.updateOne({_id: itemId}, {name: itemName}, {image:itemImage},{description:itemDescription})
+
+   console.log(req.body)
+
+   res.json(results)
+}
 
 
  async function deleteItem(req, res ){
@@ -24,12 +36,20 @@ async function saveItem (req, res){
     res.json(results)
  }
 
+ async function getItemById(req, res) {
+
+   const results = await Item.findOne({_id:req.params.id});
+
+  res.json(results)
+
+}
+
 
 
  module.exports = {
     getAllItems,
     saveItem,
-    // updateItem,
-    // getItemById,
+    updateItem,
+    getItemById,
     deleteItem
   }
