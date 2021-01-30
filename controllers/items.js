@@ -2,8 +2,8 @@ const Item = require('../models/item')
 
 
 async function getAllItems(req,res){
-    const items= await Item.find({}).sort('createdAt')
-    res.json(items)
+    const items= await Item.find({}).sort('name')
+    res.json({results:{items}})
 }
 
 async function saveItem (req, res){
@@ -28,13 +28,11 @@ async function saveItem (req, res){
 }
 
 
- async function deleteItem(req, res ){
-    const itemId = req.body.itemId;
-    
-    const results = await item.deleteOne({_id: itemId});
- 
-    res.json(results)
- }
+async function deleteItem(req, res ){
+   const itemId = req.body.itemId;
+   const results = await Item.deleteOne({_id: itemId});
+   res.json(results)
+}
 
  async function getItemById(req, res) {
 
