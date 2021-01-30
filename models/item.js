@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-  name: String,
-  image: String,
+  name:{ type: String, 
+    required: true,
+    lowercase: true,
+    },
+  image:String,
   description: String,
   
 }, {
