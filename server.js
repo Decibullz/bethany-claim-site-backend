@@ -8,14 +8,15 @@ const app = express()
 require(`./config/database`)
 require('dotenv').config();
 
-const itemsRouter = require('./routes/items');
-const userRouter = require('./routes/user');
+
 app.use(cors())
 app.use(morgan(`dev`))
 app.use(express.static(`public`))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
+const itemsRouter = require('./routes/items');
+const userRouter = require('./routes/user');
 // routes
 app.use('/items', itemsRouter)
 app.use('/user', userRouter)
