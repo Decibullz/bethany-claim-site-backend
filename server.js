@@ -6,11 +6,11 @@ const methodOverride = require('method-override')
 const app = express()
 
 // require the DB
-require(`./database/database`)
+require(`./config/database`)
 require('dotenv').config();
 
 const itemsRouter = require('./routes/items');
-// const usersRouter = require('./routes/user');
+const userRouter = require('./routes/user');
 
 app.use(morgan(`dev`))
 app.use(express.static(`public`))
@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:false}))
 
 // routes
 app.use('/items', itemsRouter)
-
+app.use('/user', userRouter)
 
 
 app.listen(port,()=> console.log(`Express is up and running on Port:${port}`))
