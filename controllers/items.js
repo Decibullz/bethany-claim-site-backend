@@ -2,7 +2,7 @@ const Item = require('../models/item')
 
 
 async function getAllItems(req,res){
-    const items= await Item.find({}).sort('name')
+    const items= await Item.find({}).sort('createdAt')
     res.json({results:{items}})
 }
 
